@@ -3,4 +3,5 @@
     <string name="home_screen">Go 4all</string>
     <string name="change_the_color">TROCAR COR DA TELA</string>
     <string name="main_button_content_description">Toque para mudar a cor de fundo da tela</string>
+    <string name="error_color_message">Aperte o botão novamente</string>
 </resources>

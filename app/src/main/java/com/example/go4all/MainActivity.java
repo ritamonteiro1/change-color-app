@@ -2,8 +2,9 @@ package com.example.go4all;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -11,64 +12,71 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 public class MainActivity extends AppCompatActivity {
 
     private Button mainButton;
-    private ConstraintLayout constraintLayout;
+    private ConstraintLayout mainConstraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findIds();
+        findViewsById();
         setupButton();
     }
 
-    private void findIds() {
+    private void findViewsById() {
         mainButton = findViewById(R.id.mainButton);
-        constraintLayout = findViewById(R.id.mainConstraintLayout);
+        mainConstraintLayout = findViewById(R.id.mainConstraintLayout);
     }
 
     private void setupButton() {
-        mainButton.setOnClickListener(this::onClick);
+        mainButton.setOnClickListener(v -> {
+            long timestampNumber = System.currentTimeMillis();
+            String timestamp = Long.toString(timestampNumber);
+            changeBackgroundColor(timestamp);
+        });
     }
 
     private void changeBackgroundColor(String timestamp) {
-        switch (Colors.convertLetterToColor(timestamp.charAt(timestamp.length() - 1))){
-            case Colors.WHITE:
-                constraintLayout.setBackgroundColor(Color.WHITE);
+        char lastLetter = getLastChar(timestamp);
+        Colors color = Colors.convertLetterToColor(lastLetter);
+        switch (color) {
+            case WHITE:
+                mainConstraintLayout.setBackgroundColor(Color.WHITE);
                 break;
-            case Colors.BLACK:
-                constraintLayout.setBackgroundColor(Color.BLACK);
+            case BLACK:
+                mainConstraintLayout.setBackgroundColor(Color.BLACK);
                 break;
-            case Colors.BLUE:
-                constraintLayout.setBackgroundColor(Color.BLUE);
+            case BLUE:
+                mainConstraintLayout.setBackgroundColor(Color.BLUE);
                 break;
-            case Colors.GREEN:
-                constraintLayout.setBackgroundColor(Color.GREEN);
+            case GREEN:
+                mainConstraintLayout.setBackgroundColor(Color.GREEN);
                 break;
-            case Colors.MAGENTA:
-                constraintLayout.setBackgroundColor(Color.MAGENTA);
+            case PINK:
+                mainConstraintLayout.setBackgroundColor(Color.MAGENTA);
                 break;
-            case Colors.RED:
-                constraintLayout.setBackgroundColor(Color.RED);
+            case RED:
+                mainConstraintLayout.setBackgroundColor(Color.RED);
                 break;
-            case Colors.PURPLE:
-                constraintLayout.setBackgroundResource(R.color.purple);
+            case PURPLE:
+                mainConstraintLayout.setBackgroundResource(R.color.purple);
                 break;
-            case Colors.YELLOW:
-                constraintLayout.setBackgroundColor(Color.YELLOW);
+            case YELLOW:
+                mainConstraintLayout.setBackgroundColor(Color.YELLOW);
                 break;
-            case Colors.GRAY:
-                constraintLayout.setBackgroundColor(Color.GRAY);
+            case GRAY:
+                mainConstraintLayout.setBackgroundColor(Color.GRAY);
                 break;
-            case Colors.LILAC:
-                constraintLayout.setBackgroundResource(R.color.lilac);
+            case LILAC:
+                mainConstraintLayout.setBackgroundResource(R.color.lilac);
+                break;
+            default:
+                Toast.makeText(this, getString(R.string.error_color_message), Toast.LENGTH_SHORT).show();
                 break;
         }
     }
 
-    private void onClick(View v) {
-        long timestampNumber = System.currentTimeMillis() / 1000;
-        String timestamp = Long.toString(timestampNumber);
-        changeBackgroundColor(timestamp);
+    private char getLastChar(String timestamp) {
+        return timestamp.charAt(timestamp.length() - 1);
     }
 }

@@ -5,44 +5,47 @@ public enum Colors {
     BLACK('1'),
     BLUE('2'),
     GREEN('3'),
-    MAGENTA('4'),
+    PINK('4'),
     RED('5'),
     PURPLE('6'),
     YELLOW('7'),
     GRAY('8'),
-    LILAC('9');
+    LILAC('9'),
+    ERROR_COLOR('#');
 
-    private final char id;
+    private final char value;
 
-    Colors(char id) {
-        this.id = id;
+    Colors(char value) {
+        this.value = value;
     }
 
-    public char getId() {
-        return id;
+    public char getValue() {
+        return value;
     }
 
-    public static Colors convertLetterToColor(char letter){
-        if(letter == Colors.WHITE.getId()){
+    public static Colors convertLetterToColor(char letter) {
+        if (letter == Colors.WHITE.getValue()) {
             return Colors.WHITE;
-        } else if (letter == Colors.BLACK.getId()){
+        } else if (letter == Colors.BLACK.getValue()) {
             return Colors.BLACK;
-        } else if (letter == Colors.BLUE.getId()){
+        } else if (letter == Colors.BLUE.getValue()) {
             return Colors.BLUE;
-        } else if (letter == Colors.GREEN.getId()){
-            return  Colors.GREEN;
-        } else if (letter == Colors.MAGENTA.getId()){
-            return Colors.MAGENTA;
-        } else if (letter == Colors.RED.getId()){
+        } else if (letter == Colors.GREEN.getValue()) {
+            return Colors.GREEN;
+        } else if (letter == Colors.PINK.getValue()) {
+            return Colors.PINK;
+        } else if (letter == Colors.RED.getValue()) {
             return Colors.RED;
-        } else if (letter == Colors.PURPLE.getId()){
-            return  Colors.PURPLE;
-        } else if (letter == Colors.YELLOW.getId()){
+        } else if (letter == Colors.PURPLE.getValue()) {
+            return Colors.PURPLE;
+        } else if (letter == Colors.YELLOW.getValue()) {
             return Colors.YELLOW;
-        } else if (letter == Colors.GRAY.getId()){
+        } else if (letter == Colors.GRAY.getValue()) {
             return Colors.GRAY;
-        } else if (letter == Colors.LILAC.getId()){
+        } else if (letter == Colors.LILAC.getValue()) {
             return Colors.LILAC;
+        } else {
+            return Colors.ERROR_COLOR;
         }
     }
 }
