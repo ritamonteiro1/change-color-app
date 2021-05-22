@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int SUBTRACTION_ASSISTANT = 1;
     private Button mainButton;
     private ConstraintLayout mainConstraintLayout;
 
@@ -77,6 +78,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private char getLastChar(String timestamp) {
-        return timestamp.charAt(timestamp.length() - 1);
+        return timestamp.charAt(timestamp.length() - SUBTRACTION_ASSISTANT);
     }
 }
